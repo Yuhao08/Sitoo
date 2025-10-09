@@ -6,16 +6,24 @@
     <title>Sito Web</title>
 </head>
 <body>
+  <div id="barra-oraria" style="background-color: #222; color: white; padding: 10px; text-align: center; font-family: monospace; font-size: 18px;">
+    Ora attuale: <span id="orologio">--:--:--</span>
+  </div>
     <h1>Accedi alla pagina</h1>
     <form action="">
         <p>Nome<input type="text"></p>
         <p>Cognome<input type="text"></p>
         <p>Pasword<input type="password"></p>
     </form>
-    <button type="button">submit</button>
+
+    <button onclick="cambiaColoreSfondo()">🎨 Cambia Colore Sfondo</button>
+
+    
+    
+    
     <nav>
         <ul>
-          <li><a href="#ciaoMondo">cosa faccio</a></li>
+          <li><a href="#ciaoMondo">Abid Hossain</a></li>
           <li><a href="#letteratura">Orlando</a></li>
           <li><a href="#Email">Email</a></li>
         </ul>
@@ -100,9 +108,46 @@
          <h2>Email</h2>
 
          <a type="Email"><p>ye.yuhao.studente@itispaleocapa.it</p></a>
-         <button href="https://workspace.google.com/intl/it/gmail/" type="button">VAI</button>
+         <a href="https://workspace.google.com/intl/it/gmail/" target="_blank">
+          <button type="button">VAI</button>
+        </a>
         </article>
       </section>
+      <script>
+        function aggiornaOra() {
+          const orologio = document.getElementById('orologio');
+          const adesso = new Date();
+      
+          const ore = adesso.getHours().toString().padStart(2, '0');
+          const minuti = adesso.getMinutes().toString().padStart(2, '0');
+          const secondi = adesso.getSeconds().toString().padStart(2, '0');
+      
+          orologio.textContent = `${ore}:${minuti}:${secondi}`;
+        }
+      
+        // aggiorna l'ora ogni secondo
+        setInterval(aggiornaOra, 1000);
+        aggiornaOra(); // aggiorna subito all'avvio
+      </script>
 
+      <script>
+  const colori = ["#ffffff", "#f0f8ff", "#ffe4e1", "#e6ffe6", "#e0f7fa", "#fdfd96", "#dcdcdc", "#222222"]; // puoi aggiungerne altri
+
+  let indiceColore = 0;
+
+  function cambiaColoreSfondo() {
+    indiceColore = (indiceColore + 1) % colori.length;
+    document.body.style.backgroundColor = colori[indiceColore];
+
+    // Colore del testo se sfondo è scuro
+    if (indiceColore === colori.length - 1) {
+      document.body.style.color = "#f0f0f0";
+    } else {
+      document.body.style.color = "#000000";
+    }
+  }
+      </script>
+
+      
 </body>
 </html>
