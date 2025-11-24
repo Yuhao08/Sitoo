@@ -14,6 +14,16 @@
 
     <button style="height: 50px;" style="width: 200px;"  onclick="cambiaColoreSfondo()">Cambia Colore Sfondo</button>
 
+<section id="giocoClick" style="margin-top: 50px;">
+  <h2>Gioco del Click</h2>
+  <p>Clicca il pulsante il più possibile in <strong>5 secondi</strong>!</p>
+
+  <button id="startGame" style="padding: 10px 20px;">Inizia</button>
+  <button id="clickButton" style="padding: 10px 20px; display: none;">CLICCA!</button>
+
+  <p id="timer" style="font-size: 20px; margin-top: 10px;">Tempo: 0</p>
+  <p id="score" style="font-size: 24px;">Punteggio: 0</p>
+</section>
     
     
     
@@ -141,8 +151,48 @@
     } else {
       document.body.style.color = "#000000";
     }
-  }
-      </script>
+  }	
+</script>
+
+<script>	
+  let tempo = 5;
+  let punteggio = 0;
+  let intervallo;
+
+  const startGame = document.getElementById("startGame");
+  const clickButton = document.getElementById("clickButton");
+  const timer = document.getElementById("timer");
+  const score = document.getElementById("score");
+
+  startGame.addEventListener("click", () => {
+    punteggio = 0;
+    tempo = 5;
+    score.textContent = "Punteggio: 0";
+    timer.textContent = "Tempo: 5";
+
+    clickButton.style.display = "inline-block";
+    startGame.style.display = "none";
+
+    intervallo = setInterval(() => {
+      tempo--;
+      timer.textContent = "Tempo: " + tempo;
+
+      if (tempo <= 0) {
+        clearInterval(intervallo);
+        clickButton.style.display = "none";
+        startGame.textContent = "Gioca di nuovo";
+        startGame.style.display = "inline-block";
+	
+	alert("Tempo scaduto! Hai totalizzato " + punteggio + " click.");
+      }
+    }, 1000);
+  });
+
+  clickButton.addEventListener("click", () => {
+    punteggio++;
+    score.textContent = "Punteggio: " + punteggio;
+  });
+</script>
   
       
 </body>
