@@ -3,7 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sito Web</title<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sito Web</title>
+</head>
+<body>
+
+  <!-- NUOVO ELEMENTO 1 -->
+  <header style="background:#222; color:white; padding:15px; text-align:center;">
+    <h1>Benvenuto nel sito migliorato dello YE</h1>
+  </header>
+
+  <div id="barra-oraria" style="background-color: #8a0808; color: white; padding: 10px; text-align: center; font-family: monospace; font-size: 18px;">
+    Ora attuale: <span id="orologio">--:--:--</span>
+  </div>
+
+  <!-- NUOVO ELEMENTO 2: SIDEBAR -->
+  <aside style="width:180px; float:right; background:#eee; padding:10px; border-left:2px solid #ccc;">
+    <h3>Menu rapido</h3>
+    <ul>
+      <li><a href="#giocoClick">Gioco</a></li>
+      <li><a href="#letteratura">Letteratura</a></li>
+      <li><a href="#infoBox">Info</a></li>
+      <li><a href="#Email">Email</a></li>
+    </ul>
+  </aside>
+
+  <h1>IL SITO DELLO YE</h1>
+    
+  <button style="height: 50px; width: 200px;" onclick="cambiaColoreSfondo()">Cambia Colore Sfondo</button>
+
+<section id="giocoClick" style="margin-top: 50px;">
+  <h2>Gioco del Click</h2>
+  <p>Clicca il pulsante il più possibile in <strong>5 secondi</strong>!</p>
+
+  <button id="startGame" style="padding: 10px 20px;">Inizia</button>
+  <button id="clickButton" style="padding: 10px 20px; display: none;">CLICCA!</button>
+
+  <p id="timer" style="font-size: 20px; margin-top: 10px;">Tempo: 0</p>
+  <p id="score" style="font-size: 24px;">Punteggio: 0</p>
+</section>
+
+<!-- NUOVO ELEMENTO 3: INPUT -->
+<div style="margin-top: 40px;">
+  <label for="inputNome">Scrivi il tuo nome: </label>
+  <input id="inputNome" type="text" placeholder="Inserisci nome...">
+  <button onclick="saluta()">Invia</button>
+  <p id="salutoOutput" style="font-weight:bold;"></p>
+</div>
+
+<script>
+function saluta() {
+  const nome = document.getElementById("inputNome").value;
+  document.getElementById("salutoOutput").textContent = "Ciao " + nome + "!";
+}
+</script>
+
+<nav>
+    <ul>
+      <li><a href="#ciaoMondo">Abid Hossain</a></li>
+      <li><a href="#letteratura">Orlando</a></li>
+      <li><a href="#Email">Email</a></li>
+    </ul>
+</nav>
+
+<section>
+
+<!-- NUOVO ELEMENTO 4: CARD INFO -->
+<div id="infoBox" style="background:#f5f5f5; padding:20px; border-radius:10px; margin:30px 0;">
+    <h3>Informazione casuale</h3>
+    <p id="infoRandom">Clicca il bottone per un fatto casuale!</p>
+    <button onclick="generaInfo()">Nuova info</button>
+</div>
+
+<script>
+const fatti = [
+  "Il Bangladesh ha più abitanti della Russia.",
+  "L’endecasillabo è il verso tipico della poesia italiana.",
+  "Un click al secondo è troppo poco… allenati!",
+  "La Terra viaggia a 107.000 km/h intorno al Sole."
+];
+
+function generaInfo() {
+  const random = Math.floor(Math.random() * fatti.length);
+  document.getElementById("infoRandom").textContent = fatti[random];
+}
+</script>
+
+
+<article id="ciaoMondo">
+    <h1>Abid Hossain</h1>
+    <p><strong>Abid Hossain</strong> è un nome diffuso in Bangladesh...</p>
+
+    <img style="width: 150px;" src="img/abid.jpg" alt="abid è timido">
+    
+    <footer>
+        <p>Informazioni generali - 2025.</p>
+    </footer>
+</article>
+
+<h1>--------------------------------------------------------------</h1>
+
+<article id="letteratura">
+  <h1>Orlando Innamorato</h1>
+  <p>...</p>
+</article>
+
+<article id="Email">
+ <h2>Email</h2>
+ <p>ye.yuhao.studente@itispaleocapa.it</p>
+ <button onclick="window.open('https://workspace.google.com/intl/it/gmail/')">VAI</button>
+</article>
+
+<!-- NUOVO ELEMENTO 5: FOOTER -->
+<footer style="background:#222; padding:20px; margin-top:40px; color:white; text-align:center;">
+  <p>Sito creato da YE — 2025</p>
+</footer>
+
+<!-- NUOVO ELEMENTO 6: BOTTONE TORNA SU -->
+<button onclick="scrollTo(0,0)" style="position:fixed; bottom:20px; right:20px; padding:10px;">⬆️ Torna su</button>
+
+<script>
+        function aggiornaOra() {
+          const orologio = document.getElementById('orologio');
+          const adesso = new Date();
+      
+          const ore = adesso.getHours().toString().padStart(2, '0');
+          const minuti = adesso.getMinutes().toString().padStart(2, '0');
+          const secondi = adesso.getSeconds().toString().padStart(2, '0');
+      
+          orologio.textContent = `${ore}:${minuti}:${secondi}`;
+        }
+
+        setInterval(aggiornaOra, 1000);
+        aggiornaOra();
+</script>
+
+<script>
+  const colori = ["#ffffff", "#f0f8ff", "#ffe4e1", "#e6ffe6", "#e0f7fa", "#fdfd96", "#dcdcdc", "#222222"];
+  let indiceColore = 0;
+
+  function cambiaColoreSfondo() {
+    indiceColore = (indiceColore + 1) % colori.length;
+    document.body.style.backgroundColor = colori[indiceColore];
+
+    document.body.style.color = indiceColore === colori.length - 1 ? "#f0f0f0" : "#000000";
+  }
+</script>
+
+<script>	
+  let tempo = 5;
+  let punteggio = 0;
+  let intervallo;
+
+  const startGame = document.getElementById("startGame");
+  const clickButton = document.getElementById("clickButton");
+  const timer = document.getElementById("timer");
+  const score = document.getElementById("score");
+
+  startGame.addEventListener("click", () => {
+    punteggio = 0;
+    tempo = 5;
+    score.textContent = "Punteggio: 0";
+    timer.textContent = "Tempo: 5";
+
+    clickButton.style.display = "inline-block";
+    startGame.style.display = "none";
+
+    intervallo = setInterval(() => {
+      tempo--;
+      timer.textContent = "Tempo: " + tempo;
+
+      if (tempo <= 0) {
+        clearInterval(intervallo);
+        clickButton.style.display = "none";
+        startGame.textContent = "Gioca di nuovo";
+        startGame.style.display = "inline-block";
+	
+	alert("Tempo scaduto! Hai totalizzato " + punteggio + " click.");
+      }
+    }, 1000);
+  });
+
+  clickButton.addEventListener("click", () => {
+    punteggio++;
+    score.textContent = "Punteggio: " + punteggio;
+  });
+</script>
+
+</body>
+</html>
+
 </head>
 <body>
   <div id="barra-oraria" style="background-color: #8a0808; color: white; padding: 10px; text-align: center; font-family: monospace; font-size: 18px;">
@@ -197,5 +390,6 @@
       
 </body>
 </html>
+
 
 
